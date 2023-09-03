@@ -15,8 +15,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_notes"
             android:layout_width="match_parent"
-            android:visibility="gone"
-               android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_empty_notes_message_layout"
@@ -30,8 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/hello_user_manage_your_notes_now"
-                android:textSize="32sp"
                 android:textColor="?attr/colorPrimaryContainer"
+                android:textSize="32sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,21 +40,21 @@
                 android:id="@+id/iv_file"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:contentDescription="@string/add_note_now"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_hello_message"
-                app:srcCompat="@drawable/file"
-                android:contentDescription="@string/add_note_now" />
+                app:srcCompat="@drawable/file" />
 
             <TextView
                 android:id="@+id/tv_"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/add_note_now"
                 android:layout_marginTop="8dp"
-                android:textSize="24sp"
+                android:text="@string/add_note_now"
                 android:textColor="?attr/colorPrimaryContainer"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/iv_file"
                 app:layout_constraintStart_toStartOf="@+id/iv_file"
                 app:layout_constraintTop_toBottomOf="@+id/iv_file" />
@@ -64,10 +64,10 @@
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:src="@android:drawable/ic_input_add"
-            android:contentDescription="@string/add_note" />
+            android:clickable="true"
+            android:contentDescription="@string/add_note"
+            android:src="@android:drawable/ic_input_add" />
     </FrameLayout>
 </layout>
