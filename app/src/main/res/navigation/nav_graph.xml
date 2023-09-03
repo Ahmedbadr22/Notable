@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/notesListFragment">
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.coder.x.notable.presentation.screen.SplashFragment"
+        tools:layout="@layout/fragment_splash" />
 
     <fragment
         android:id="@+id/notesListFragment"
@@ -13,4 +18,5 @@
         android:id="@+id/addEditNoteFragment"
         android:name="com.coder.x.notable.presentation.screen.AddEditNoteFragment"
         tools:layout="@layout/fragment_add_edit_note" />
+
 </navigation>
