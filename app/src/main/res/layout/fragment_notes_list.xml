@@ -16,12 +16,14 @@
             android:id="@+id/rv_notes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone" />
+            android:layout_marginHorizontal="16dp"
+            tools:listitem="@layout/note_item"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_empty_notes_message_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             android:padding="16dp">
 
 
