@@ -2,4 +2,7 @@
     <string name="app_name">Notable</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_note">Add Note</string>
+    <string name="hello_user_manage_your_notes_now">Hello, User\nManage your notes now</string>
+    <string name="add_note_now">Add note now</string>
 </resources>
