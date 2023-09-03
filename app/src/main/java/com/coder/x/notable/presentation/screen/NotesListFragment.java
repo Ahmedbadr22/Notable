@@ -8,16 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.coder.x.notable.R;
+import com.coder.x.notable.databinding.FragmentNotesListBinding;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public class NotesListFragment extends Fragment {
-
+    private FragmentNotesListBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notes_list, container, false);
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentNotesListBinding.inflate(getLayoutInflater(), container, false);
+        return binding.getRoot();
     }
 }
