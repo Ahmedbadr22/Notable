@@ -16,7 +16,9 @@ import android.view.ViewGroup;
 import com.coder.x.notable.R;
 import com.coder.x.notable.databinding.FragmentSplashBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class SplashFragment extends Fragment {
 
     @Override

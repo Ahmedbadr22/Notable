@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 
 import com.coder.x.notable.databinding.FragmentAddEditNoteBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class AddEditNoteFragment extends Fragment {
     private FragmentAddEditNoteBinding binding;
 

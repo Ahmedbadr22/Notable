@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("androidx.navigation.safeargs")
+    id("com.google.dagger.hilt.android")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -47,8 +49,13 @@ dependencies {
 
     implementation("androidx.navigation:navigation-fragment:$navVersion")
     implementation("androidx.navigation:navigation-ui:$navVersion")
+
+    implementation("com.google.dagger:hilt-android:2.44")
+    annotationProcessor("com.google.dagger:hilt-android-compiler:2.44")
+
 }
 
 configurations.implementation {
     exclude("org.jetbrains.kotlin", "kotlin-stdlib-jdk8")
 }
+
