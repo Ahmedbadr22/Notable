@@ -42,7 +42,15 @@ public class NotesListFragment extends Fragment {
         setupNoteRecycler();
 
         noteViewModel.notesLiveDate.observe(getViewLifecycleOwner(), noteModels -> {
-            noteAdapter.setData(noteModels);
+            if (noteModels.isEmpty()) {
+                binding.rvNotes.setVisibility(View.GONE);
+                binding.clEmptyNotesMessageLayout.setVisibility(View.VISIBLE);
+            } else {
+                binding.rvNotes.setVisibility(View.VISIBLE);
+                binding.clEmptyNotesMessageLayout.setVisibility(View.GONE);
+                noteAdapter.setData(noteModels);
+            }
+
         });
     }
 
