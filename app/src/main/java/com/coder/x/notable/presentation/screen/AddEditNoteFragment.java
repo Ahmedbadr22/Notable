@@ -38,6 +38,7 @@ public class AddEditNoteFragment extends Fragment {
 
         if (noteModel != null) {
             binding.mtpNoteDetailEditDelete.inflateMenu(R.menu.edit_delete_menu);
+            setNoteDetail(noteModel);
         } else {
             binding.mtpNoteDetailEditDelete.inflateMenu(R.menu.save_item_menu);
         }
@@ -68,6 +69,13 @@ public class AddEditNoteFragment extends Fragment {
 
             return true;
         });
+    }
+
+    private void setNoteDetail(NoteModel note) {
+        binding.edtTitle.setText(note.getTitle());
+        binding.edtNoteBody.setText(note.getBody());
+        binding.tvCreateUpdateDate.setVisibility(View.VISIBLE);
+        binding.tvCreateUpdateDate.setText(note.getCreateUpdateDate());
     }
 
 
