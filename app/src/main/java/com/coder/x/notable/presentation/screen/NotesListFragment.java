@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,8 @@ public class NotesListFragment extends Fragment {
     private NoteViewModel noteViewModel;
 
     private NoteAdapter noteAdapter;
+
+    private NotesListFragmentDirections.ActionNotesListFragmentToAddEditNoteFragment navAction;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,7 +63,9 @@ public class NotesListFragment extends Fragment {
 
     private void init() {
         noteViewModel = new ViewModelProvider(requireActivity()).get(NoteViewModel.class);
-        noteAdapter = new NoteAdapter(new ArrayList<>());
+        noteAdapter = new NoteAdapter(new ArrayList<>(), noteModel -> {
+            Toast.makeText(requireActivity(), String.valueOf(noteModel.getTitle()), Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void setupNoteRecycler() {
@@ -70,7 +75,8 @@ public class NotesListFragment extends Fragment {
     }
 
     private void OnAddNewNote() {
-        int navAction = R.id.action_notesListFragment_to_addEditNoteFragment;
+        navAction = NotesListFragmentDirections.actionNotesListFragmentToAddEditNoteFragment();
+
         NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.fcv_main);
         if (navHostFragment != null) {
             NavController navController = navHostFragment.getNavController();

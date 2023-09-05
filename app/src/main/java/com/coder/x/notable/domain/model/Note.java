@@ -1,7 +1,12 @@
 package com.coder.x.notable.domain.model;
 
 
-public class Note {
+import androidx.annotation.Keep;
+
+import java.io.Serializable;
+
+@Keep
+public class Note implements Serializable {
     protected long id;
     protected String title;
     protected String body;
@@ -33,5 +38,14 @@ public class Note {
 
     public String getCreateUpdateDate() {
         return this.createUpdateDate;
+    }
+
+
+    public void setTitle(String value) {
+        this.title = value;
+    }
+
+    public void setBody(String value) {
+        this.title = value;
     }
 }

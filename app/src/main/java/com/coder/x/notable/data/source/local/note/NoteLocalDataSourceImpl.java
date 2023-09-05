@@ -3,6 +3,7 @@ package com.coder.x.notable.data.source.local.note;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.coder.x.notable.app.db.DBHelper;
 import com.coder.x.notable.app.db.NoteEntry;
@@ -22,7 +23,7 @@ public class NoteLocalDataSourceImpl implements NoteLocalDataSource {
     private final SQLiteDatabase sqLiteWritableDatabase;
     private final SQLiteDatabase sqLiteReadableDatabase;
 
-    private String[] projection = {
+    private final String[] projection = {
             NoteEntry._ID,
             NoteEntry.COLUMN_NAME_TITLE,
             NoteEntry.COLUMN_NAME_BODY,

@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.coder.x.notable.data.model.NoteForm;
 import com.coder.x.notable.data.model.NoteModel;
-import com.coder.x.notable.domain.model.Note;
 import com.coder.x.notable.domain.usecases.note.AddNotesUseCase;
 import com.coder.x.notable.domain.usecases.note.ListNotesFromLocalUseCase;
 
@@ -25,7 +24,8 @@ public class NoteViewModel extends ViewModel {
 
     private final AddNotesUseCase addNotesUseCase;
 
-    public MutableLiveData<List<NoteModel>> notesLiveDate = new MutableLiveData(new ArrayList<>());
+    public MutableLiveData<List<NoteModel>> notesLiveDate = new MutableLiveData<>(new ArrayList<>());
+
 
     @Inject
     public NoteViewModel(
@@ -35,20 +35,24 @@ public class NoteViewModel extends ViewModel {
         this.addNotesUseCase = addNotesUseCase;
         List<NoteModel> notes = listNotesFromLocalUseCase.invoke();
         notesLiveDate.setValue(notes);
-
-        Log.d(TAG, "NoteViewModel: Data Listed");
     }
 
 
-    public void addNote(NoteForm noteForm) {
-        addNotesUseCase.invoke(noteForm);
-        Log.d(TAG, "NoteViewModel: addNote() called with: noteForm ");
-        if (notesLiveDate.getValue() != null) {
-            Log.d(TAG, "NoteViewModel: Notes Count = " + notesLiveDate.getValue().size());
-        } else {
-            Log.d(TAG, "NoteViewModel: NotesLiveData is null ");
-        }
+    public void addNote(String title, String body) {
+        NoteForm noteForm = new NoteForm(title.trim(), body.trim());
+
+        NoteModel addedNoteModel = addNotesUseCase.invoke(noteForm);
+        List<NoteModel> notes = notesLiveDate.getValue();
+        assert notes != null;
+        notes.add(addedNoteModel);
+        notesLiveDate.setValue(notes);
     }
 
+    public void deleteNote() {
+        Log.d(TAG, "NoteViewModel: Delete Note");
+    }
 
+    public void editNote() {
+        Log.d(TAG, "NoteViewModel: Edit Note");
+    }
 }

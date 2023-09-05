@@ -35,6 +35,12 @@
     <fragment
         android:id="@+id/addEditNoteFragment"
         android:name="com.coder.x.notable.presentation.screen.AddEditNoteFragment"
-        tools:layout="@layout/fragment_add_edit_note" />
+        tools:layout="@layout/fragment_add_edit_note" >
+        <argument
+            android:name="note"
+            app:argType="com.coder.x.notable.data.model.NoteModel"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 
 </navigation>

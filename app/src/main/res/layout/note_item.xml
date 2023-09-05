@@ -8,6 +8,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_note_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"

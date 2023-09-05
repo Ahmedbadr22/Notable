@@ -5,8 +5,8 @@ import com.coder.x.notable.domain.model.Note;
 
 
 public class NoteForm extends Note {
+
     public NoteForm(String title, String body) {
         super(title, body, Utils.getCurrentLocalDate());
     }
-
 }
