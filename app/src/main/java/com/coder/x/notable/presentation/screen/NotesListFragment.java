@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +14,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.coder.x.notable.R;
+import com.coder.x.notable.app.uitls.NoteClickListener;
+import com.coder.x.notable.data.model.NoteModel;
 import com.coder.x.notable.databinding.FragmentNotesListBinding;
 import com.coder.x.notable.presentation.adapter.NoteAdapter;
 import com.coder.x.notable.presentation.viewmodel.NoteViewModel;
@@ -63,8 +64,22 @@ public class NotesListFragment extends Fragment {
 
     private void init() {
         noteViewModel = new ViewModelProvider(requireActivity()).get(NoteViewModel.class);
-        noteAdapter = new NoteAdapter(new ArrayList<>(), noteModel -> {
-            Toast.makeText(requireActivity(), String.valueOf(noteModel.getTitle()), Toast.LENGTH_SHORT).show();
+        noteAdapter = new NoteAdapter(new ArrayList<>(), new NoteClickListener() {
+            @Override
+            public void onNoteClick(NoteModel noteModel) {
+                navAction = NotesListFragmentDirections.actionNotesListFragmentToAddEditNoteFragment();
+                navAction.setNote(noteModel);
+                NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.fcv_main);
+                if (navHostFragment != null) {
+                    NavController navController = navHostFragment.getNavController();
+                    navController.navigate(navAction);
+                }
+            }
+
+            @Override
+            public void onDeleteNote(NoteModel noteModel) {
+
+            }
         });
     }
 
@@ -83,5 +98,6 @@ public class NotesListFragment extends Fragment {
             navController.navigate(navAction);
         }
     }
+
 
 }
