@@ -32,7 +32,54 @@
                 android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/arrow_back"
                 app:titleCentered="true" />
-
         </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/tv_createUpdateDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            tools:text="22 Dec"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/abl_note_detail_edit_delete" />
+
+        <EditText
+            android:id="@+id/edt_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:background="null"
+            android:ems="10"
+            android:hint="@string/title"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingVertical="8dp"
+            android:textSize="35sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_createUpdateDate"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/edt_note_body"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="null"
+            android:ems="10"
+            android:hint="@string/note"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:gravity="top"
+            android:layout_marginBottom="16dp"
+            android:paddingVertical="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/edt_title"
+            app:layout_constraintStart_toStartOf="@+id/edt_title"
+            app:layout_constraintTop_toBottomOf="@+id/edt_title"
+            tools:ignore="LabelFor" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
