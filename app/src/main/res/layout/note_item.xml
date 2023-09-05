@@ -57,7 +57,8 @@
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:icon="@drawable/file_corrupted"
+                app:icon="@drawable/trash"
+                android:contentDescription="@string/delete_note"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

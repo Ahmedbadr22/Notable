@@ -8,4 +8,5 @@
     <string name="note">Note</string>
     <string name="title">Title</string>
     <string name="save">Save</string>
+    <string name="delete_note">Delete Note</string>
 </resources>
