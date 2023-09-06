@@ -64,7 +64,7 @@ public class AddEditNoteFragment extends Fragment {
                 String body = binding.edtNoteBody.getText().toString();
                 noteViewModel.addNote(title, body);
             }
-            else if (item.getItemId() == R.id.item_delete) noteViewModel.deleteNote();
+            else if (item.getItemId() == R.id.item_delete) noteViewModel.deleteNote(noteModel.getId());
             else noteViewModel.editNote();
 
             return true;

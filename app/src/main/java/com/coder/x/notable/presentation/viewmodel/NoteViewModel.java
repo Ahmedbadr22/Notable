@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.coder.x.notable.data.model.NoteForm;
 import com.coder.x.notable.data.model.NoteModel;
 import com.coder.x.notable.domain.usecases.note.AddNotesUseCase;
+import com.coder.x.notable.domain.usecases.note.DeleteNoteUseCase;
 import com.coder.x.notable.domain.usecases.note.ListNotesFromLocalUseCase;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class NoteViewModel extends ViewModel {
     private final String TAG = "NoteViewModel";
 
     private final AddNotesUseCase addNotesUseCase;
+    private final DeleteNoteUseCase deleteNoteUseCase;
 
     public MutableLiveData<List<NoteModel>> notesLiveDate = new MutableLiveData<>(new ArrayList<>());
 
@@ -30,9 +32,11 @@ public class NoteViewModel extends ViewModel {
     @Inject
     public NoteViewModel(
             ListNotesFromLocalUseCase listNotesFromLocalUseCase,
-            AddNotesUseCase addNotesUseCase
+            AddNotesUseCase addNotesUseCase,
+            DeleteNoteUseCase deleteNoteUseCase
     ) {
         this.addNotesUseCase = addNotesUseCase;
+        this.deleteNoteUseCase = deleteNoteUseCase;
         List<NoteModel> notes = listNotesFromLocalUseCase.invoke();
         notesLiveDate.setValue(notes);
     }
@@ -48,8 +52,13 @@ public class NoteViewModel extends ViewModel {
         notesLiveDate.setValue(notes);
     }
 
-    public void deleteNote() {
-        Log.d(TAG, "NoteViewModel: Delete Note");
+    public void deleteNote(long id) {
+        boolean isDeleted = deleteNoteUseCase.invoke(id);
+        if (isDeleted) {
+            Log.i(TAG, "deleteNote: Deleted");
+        } else {
+            Log.i(TAG, "deleteNote: Not Deleted");
+        }
     }
 
     public void editNote() {

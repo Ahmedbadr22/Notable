@@ -1,6 +1,7 @@
 package com.coder.x.notable.presentation.screen;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,7 +79,7 @@ public class NotesListFragment extends Fragment {
 
             @Override
             public void onDeleteNote(NoteModel noteModel) {
-
+                noteViewModel.deleteNote(noteModel.getId());
             }
         });
     }

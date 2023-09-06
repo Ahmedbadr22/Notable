@@ -3,6 +3,7 @@ package com.coder.x.notable.presentation.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         TextView noteCreateUpdateDate;
         TextView noteBody;
         CardView noteCard;
+        Button iconButtonDelete;
 
         public ViewHolder(View view) {
             super(view);
@@ -38,6 +40,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             noteCreateUpdateDate =  view.findViewById(R.id.tv_date);
             noteBody =  view.findViewById(R.id.tv_body);
             noteCard =  view.findViewById(R.id.cv_note_item);
+            iconButtonDelete =  view.findViewById(R.id.ib_delete);
         }
 
         public void setNote(NoteModel note) {
@@ -65,6 +68,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         NoteModel note = notes.get(position);
         holder.setNote(note);
         holder.noteCard.setOnClickListener(view -> noteClickListener.onNoteClick(note));
+        holder.iconButtonDelete.setOnClickListener(view -> noteClickListener.onDeleteNote(note));
     }
 
     @Override
