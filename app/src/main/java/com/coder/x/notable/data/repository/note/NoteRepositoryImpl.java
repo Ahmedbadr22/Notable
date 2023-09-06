@@ -40,4 +40,9 @@ public class NoteRepositoryImpl implements NoteRepository {
     public boolean deleteNoteById(long id) {
         return noteLocalDataSource.deleteNoteById(id);
     }
+
+    @Override
+    public boolean editNote(NoteModel noteModel) {
+        return noteLocalDataSource.editNote(noteModel);
+    }
 }
