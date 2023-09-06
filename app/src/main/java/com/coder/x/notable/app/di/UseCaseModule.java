@@ -3,6 +3,7 @@ package com.coder.x.notable.app.di;
 import com.coder.x.notable.domain.repository.NoteRepository;
 import com.coder.x.notable.domain.usecases.note.AddNotesUseCase;
 import com.coder.x.notable.domain.usecases.note.DeleteNoteUseCase;
+import com.coder.x.notable.domain.usecases.note.EditNoteUseCase;
 import com.coder.x.notable.domain.usecases.note.ListNotesFromLocalUseCase;
 
 import dagger.Module;
@@ -28,6 +29,11 @@ public class UseCaseModule {
     @Provides
     DeleteNoteUseCase provideDeleteNoteUseCase(NoteRepository noteRepository) {
         return new DeleteNoteUseCase(noteRepository);
+    }
+
+    @Provides
+    EditNoteUseCase provideEditNoteUseCase(NoteRepository noteRepository) {
+        return new EditNoteUseCase(noteRepository);
     }
 
 }
