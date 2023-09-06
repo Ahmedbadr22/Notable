@@ -12,4 +12,5 @@ public interface NoteLocalDataSource {
     List<NoteModel> listAllNotes();
 
     boolean deleteNoteById(long id);
+    boolean editNote(NoteModel noteModel);
 }

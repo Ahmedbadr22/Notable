@@ -3,10 +3,10 @@ package com.coder.x.notable.data.source.local.note;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.coder.x.notable.app.db.DBHelper;
 import com.coder.x.notable.app.db.NoteEntry;
+import com.coder.x.notable.app.uitls.Utils;
 import com.coder.x.notable.data.model.NoteForm;
 import com.coder.x.notable.data.model.NoteModel;
 
@@ -111,5 +111,19 @@ public class NoteLocalDataSourceImpl implements NoteLocalDataSource {
         String[] idArgs = {String.valueOf(id)};
         String condition = NoteEntry._ID + " = ?";
         return sqLiteWritableDatabase.delete(NoteEntry.TABLE_NAME, condition, idArgs) > 0;
+    }
+
+    @Override
+    public boolean editNote(NoteModel noteModel) {
+        ContentValues values = new ContentValues();
+
+        values.put(NoteEntry.COLUMN_NAME_TITLE, noteModel.getTitle());
+        values.put(NoteEntry.COLUMN_NAME_BODY, noteModel.getBody());
+        values.put(NoteEntry.COLUMN_NAME_CREATE_UPDATE_DATE, Utils.getCurrentLocalDate());
+
+        String[] idArgs = {String.valueOf(noteModel.getId())};
+        String condition = NoteEntry._ID + " = ?";
+
+        return sqLiteWritableDatabase.update(NoteEntry.TABLE_NAME, values, condition, idArgs) > 0;
     }
 }
