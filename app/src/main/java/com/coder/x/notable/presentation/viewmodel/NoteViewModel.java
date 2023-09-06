@@ -1,14 +1,14 @@
 package com.coder.x.notable.presentation.viewmodel;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.coder.x.notable.app.uitls.Utils;
 import com.coder.x.notable.data.model.NoteForm;
 import com.coder.x.notable.data.model.NoteModel;
 import com.coder.x.notable.domain.usecases.note.AddNotesUseCase;
 import com.coder.x.notable.domain.usecases.note.DeleteNoteUseCase;
+import com.coder.x.notable.domain.usecases.note.EditNoteUseCase;
 import com.coder.x.notable.domain.usecases.note.ListNotesFromLocalUseCase;
 
 import java.util.ArrayList;
@@ -21,10 +21,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class NoteViewModel extends ViewModel {
 
-    private final String TAG = "NoteViewModel";
-
     private final AddNotesUseCase addNotesUseCase;
     private final DeleteNoteUseCase deleteNoteUseCase;
+    private final EditNoteUseCase editNoteUseCase;
 
     public MutableLiveData<List<NoteModel>> notesLiveDate = new MutableLiveData<>(new ArrayList<>());
 
@@ -33,10 +32,12 @@ public class NoteViewModel extends ViewModel {
     public NoteViewModel(
             ListNotesFromLocalUseCase listNotesFromLocalUseCase,
             AddNotesUseCase addNotesUseCase,
-            DeleteNoteUseCase deleteNoteUseCase
+            DeleteNoteUseCase deleteNoteUseCase,
+            EditNoteUseCase editNoteUseCase
     ) {
         this.addNotesUseCase = addNotesUseCase;
         this.deleteNoteUseCase = deleteNoteUseCase;
+        this.editNoteUseCase = editNoteUseCase;
         List<NoteModel> notes = listNotesFromLocalUseCase.invoke();
         notesLiveDate.setValue(notes);
     }
@@ -68,7 +69,19 @@ public class NoteViewModel extends ViewModel {
         return isDeleted;
     }
 
-    public void editNote() {
-        Log.d(TAG, "NoteViewModel: Edit Note");
+    public boolean editNote(long noteId, String title, String body) {
+        NoteModel updatedNote = new NoteModel(noteId, title, body, Utils.getCurrentLocalDate());
+        boolean isUpdated = editNoteUseCase.invoke(updatedNote);
+        if (isUpdated) {
+            List<NoteModel> updatedNotes = notesLiveDate.getValue();
+            for(int i = 0; i < updatedNotes.size(); i++) {
+                NoteModel note = updatedNotes.get(i);
+                if (note.getId() == noteId) {
+                    updatedNotes.set(i, updatedNote);
+                }
+            }
+            notesLiveDate.setValue(updatedNotes);
+        }
+        return isUpdated;
     }
 }

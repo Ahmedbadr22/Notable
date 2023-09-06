@@ -60,14 +60,17 @@ public class AddEditNoteFragment extends Fragment {
                 String title = binding.edtTitle.getText().toString();
                 String body = binding.edtNoteBody.getText().toString();
                 noteViewModel.addNote(title, body);
-            }
-            else if (item.getItemId() == R.id.item_delete) {
+            } else if (item.getItemId() == R.id.item_delete) {
                 assert noteModel != null;
                 boolean isDeleted = noteViewModel.deleteNote(noteModel.getId());
                 if (isDeleted) navigateBack();
             }
-            else noteViewModel.editNote();
-
+            else {
+                String title = binding.edtTitle.getText().toString();
+                String body = binding.edtNoteBody.getText().toString();
+                boolean isUpdated = noteViewModel.editNote(noteModel.getId(), title, body);
+                if (isUpdated) navigateBack();
+            }
             return true;
         });
     }
