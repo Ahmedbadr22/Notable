@@ -43,10 +43,7 @@ public class AddEditNoteFragment extends Fragment {
             binding.mtpNoteDetailEditDelete.inflateMenu(R.menu.save_item_menu);
         }
 
-        binding.mtpNoteDetailEditDelete.setNavigationOnClickListener(mtpView -> {
-            Navigation.findNavController(view).popBackStack();
-        });
-
+        binding.mtpNoteDetailEditDelete.setNavigationOnClickListener(mtpView -> navigateBack());
 
         setupMenuActions();
     }
@@ -64,11 +61,19 @@ public class AddEditNoteFragment extends Fragment {
                 String body = binding.edtNoteBody.getText().toString();
                 noteViewModel.addNote(title, body);
             }
-            else if (item.getItemId() == R.id.item_delete) noteViewModel.deleteNote(noteModel.getId());
+            else if (item.getItemId() == R.id.item_delete) {
+                assert noteModel != null;
+                boolean isDeleted = noteViewModel.deleteNote(noteModel.getId());
+                if (isDeleted) navigateBack();
+            }
             else noteViewModel.editNote();
 
             return true;
         });
+    }
+
+    private void navigateBack() {
+        Navigation.findNavController(requireView()).popBackStack();
     }
 
     private void setNoteDetail(NoteModel note) {
@@ -77,6 +82,4 @@ public class AddEditNoteFragment extends Fragment {
         binding.tvCreateUpdateDate.setVisibility(View.VISIBLE);
         binding.tvCreateUpdateDate.setText(note.getCreateUpdateDate());
     }
-
-
 }

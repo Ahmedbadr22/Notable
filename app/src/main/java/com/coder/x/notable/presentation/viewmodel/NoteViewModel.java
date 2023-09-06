@@ -52,13 +52,19 @@ public class NoteViewModel extends ViewModel {
         notesLiveDate.setValue(notes);
     }
 
-    public void deleteNote(long id) {
+    public boolean deleteNote(long id) {
         boolean isDeleted = deleteNoteUseCase.invoke(id);
         if (isDeleted) {
-            Log.i(TAG, "deleteNote: Deleted");
-        } else {
-            Log.i(TAG, "deleteNote: Not Deleted");
+            List<NoteModel> updatedNotes = new ArrayList<>();
+            notesLiveDate.getValue().forEach(note -> {
+                if (note.getId() != id) {
+                    updatedNotes.add(note);
+                }
+            });
+            notesLiveDate.setValue(updatedNotes);
         }
+
+        return isDeleted;
     }
 
     public void editNote() {
