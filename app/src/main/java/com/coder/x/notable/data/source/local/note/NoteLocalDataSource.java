@@ -10,4 +10,6 @@ public interface NoteLocalDataSource {
     long addNote(NoteForm noteForm);
     NoteModel getNoteById(long id);
     List<NoteModel> listAllNotes();
+
+    boolean deleteNoteById(long id);
 }

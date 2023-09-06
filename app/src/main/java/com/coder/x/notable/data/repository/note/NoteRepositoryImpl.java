@@ -1,11 +1,9 @@
 package com.coder.x.notable.data.repository.note;
 
-import android.util.Log;
-
 import com.coder.x.notable.data.model.NoteForm;
 import com.coder.x.notable.data.model.NoteModel;
 import com.coder.x.notable.data.source.local.note.NoteLocalDataSource;
-import com.coder.x.notable.domain.di.NoteRepository;
+import com.coder.x.notable.domain.repository.NoteRepository;
 
 import java.util.List;
 
@@ -25,8 +23,6 @@ public class NoteRepositoryImpl implements NoteRepository {
     public NoteModel addNote(NoteForm noteForm) {
         long id = noteLocalDataSource.addNote(noteForm);
         NoteModel noteModel = getNoteById(id);
-
-        Log.d("NoteViewModel", "NoteRepository: Note Added " + noteModel.getTitle());
         return noteModel;
     }
 
@@ -38,5 +34,10 @@ public class NoteRepositoryImpl implements NoteRepository {
     @Override
     public List<NoteModel> listAllNotes() {
         return noteLocalDataSource.listAllNotes();
+    }
+
+    @Override
+    public boolean deleteNoteById(long id) {
+        return noteLocalDataSource.deleteNoteById(id);
     }
 }

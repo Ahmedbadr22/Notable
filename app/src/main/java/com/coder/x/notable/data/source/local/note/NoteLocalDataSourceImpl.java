@@ -105,4 +105,11 @@ public class NoteLocalDataSourceImpl implements NoteLocalDataSource {
 
         return notes;
     }
+
+    @Override
+    public boolean deleteNoteById(long id) {
+        String[] idArgs = {String.valueOf(id)};
+        String condition = NoteEntry._ID + " = ?";
+        return sqLiteWritableDatabase.delete(NoteEntry.TABLE_NAME, condition, idArgs) > 0;
+    }
 }

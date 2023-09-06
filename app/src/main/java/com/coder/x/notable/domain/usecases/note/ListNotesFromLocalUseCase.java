@@ -3,7 +3,7 @@ package com.coder.x.notable.domain.usecases.note;
 import android.util.Log;
 
 import com.coder.x.notable.data.model.NoteModel;
-import com.coder.x.notable.domain.di.NoteRepository;
+import com.coder.x.notable.domain.repository.NoteRepository;
 
 import java.util.List;
 

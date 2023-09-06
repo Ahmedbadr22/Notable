@@ -1,6 +1,6 @@
 package com.coder.x.notable.app.di;
 
-import com.coder.x.notable.domain.di.NoteRepository;
+import com.coder.x.notable.domain.repository.NoteRepository;
 import com.coder.x.notable.domain.usecases.note.AddNotesUseCase;
 import com.coder.x.notable.domain.usecases.note.ListNotesFromLocalUseCase;
 
